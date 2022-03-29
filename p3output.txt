@@ -1,1 +1,78 @@
+ a.out
+sh: 1: a.out: not found
+exit status 127
+ gcc -g p3original.c -lm
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8e9: file p3original.c, line 36.
+(gdb) r
+Starting program: /home/runner/Test2Session1-10/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p3original.c:36
+36    int n = input_number();
+(gdb) s
+input_number () at p3original.c:4
+4   {
+(gdb) s
+6     printf("enter the number\n");
+(gdb) n
+enter the number
+7     scanf("%d",&n);
+(gdb) n
+3
+8     return n;
+(gdb) s
+9     }
+(gdb) n
+main () at p3original.c:37
+37    int prime = is_prime(n);
+(gdb) s
+is_prime (n=3) at p3original.c:12
+12    if (n==0 || n==1)
+(gdb) s
+16    if (n==2)
+(gdb) s
+20    for(int i = 2; i<sqrt(n);i++)
+(gdb) s
+__sqrt (x=3) at w_sqrt_compat.c:30
+30  w_sqrt_compat.c: No such file or directory.
+(gdb) n
+33  in w_sqrt_compat.c
+(gdb) s
+__ieee754_sqrt (d=3) at ../sysdeps/x86_64/fpu/math_private.h:58
+58  ../sysdeps/x86_64/fpu/math_private.h: No such file or directory.
+(gdb) n
+__sqrt (x=<optimized out>) at w_sqrt_compat.c:34
+34  w_sqrt_compat.c: No such file or directory.
+(gdb) n
+is_prime (n=3) at p3original.c:25
+25    return 1;
+(gdb) s
+26    }
+(gdb) n
+main () at p3original.c:38
+38    output(n,prime);
+(gdb) n
+3 is aprime number
+39    return 0;
+(gdb) n
+40    }(gdb) c
+Continuing.
+[Inferior 1 (process 1562) exited normally]
+(gdb) 
